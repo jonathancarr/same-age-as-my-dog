@@ -1,0 +1,23 @@
+$pink: #E27396;
+$pink-light: #EA9AB2;
+$white: #FFFFFF;
+
+$background-color: $pink-light;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: $background-color;
+  padding: 0 12px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  background: white;
+  height: 100%;
+  padding: 24px;
+}

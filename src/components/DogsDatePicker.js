@@ -1,8 +1,9 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import ViewToggle from './ViewToggle';
+import ConclusionLabel from './ConclusionLabel';
 
-const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculated }) => {
+const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculated, targetDate, isMobile }) => {
 
   return (
     <div className={`date-field my-date ${className}`}>
@@ -13,6 +14,12 @@ const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculat
           onChange={date => setDogsBirthDate(date)}
         />
       </ViewToggle>
+
+      {isMobile && (
+        <ViewToggle className="my-date__target" visible={isCalculated}>
+          <ConclusionLabel targetDate={targetDate} />
+        </ViewToggle>
+      )}
     </div>
   );
 }

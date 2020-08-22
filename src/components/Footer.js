@@ -2,7 +2,7 @@ import React from 'react';
 import ViewToggle from './ViewToggle';
 import ConclusionLabel from './ConclusionLabel';
 
-const Footer = ({ isCalculated, setIsCalculated, targetDate }) => (
+const Footer = ({ isCalculated, setIsCalculated, targetDate, isMobile }) => (
   <div className="footer">
     <ViewToggle className="footer__form" visible={!isCalculated}>
       <button
@@ -15,7 +15,9 @@ const Footer = ({ isCalculated, setIsCalculated, targetDate }) => (
 
     <ViewToggle visible={isCalculated}>
       <div className="footer__calculated">
-        <ConclusionLabel targetDate={targetDate}/>
+        { !isMobile && (
+          <ConclusionLabel targetDate={targetDate}/>
+        )}
         <button
           className={`button button__back button--secondary`}
           onClick={() => setIsCalculated(false)}

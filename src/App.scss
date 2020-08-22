@@ -43,6 +43,7 @@ body {
   justify-content: flex-start;
   flex: 1;
   position: relative;
+  width: 100%;
 
   &__form {
     position: absolute;
@@ -96,6 +97,14 @@ body {
 
 }
 
+.my-date {
+  position: relative;
+  &__target {
+    position: absolute;
+    width: 100%;
+  }
+}
+
 .button {
   transition: all 150ms;
   padding: 8px 36px;
@@ -129,7 +138,13 @@ body {
   }
 
   &__calculate {
-    margin-top: 52px;
+    @media (max-width: $screen-small) {
+      margin-top: 12px;
+    }
+
+    @media (min-width: $screen-small) {
+      margin-top: 52px;
+    }
   }
 }
 

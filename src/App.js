@@ -4,13 +4,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import Header from './components/Header';
 import MyDatePicker from './components/MyDatePicker';
 import Footer from './components/Footer';
-import DatePicker from 'react-datepicker';
 import DogsDatePicker from './components/DogsDatePicker';
+import { useMedia } from './hooks';
+import { SMALL_SCREEN } from './constants';
 
 const App = () => {
   const [myBirthDate, setMyBirthDate] = useState(new Date());
   const [dogsBirthDate, setDogsBirthDate] = useState(new Date());
   const [isCalculated, setIsCalculated] = useState(false);
+
+  const isMobile = useMedia(
+    [`(max-width: ${SMALL_SCREEN})`],
+    [true],
+    false
+  );
 
   const targetDate = useMemo(() => {
     if (!myBirthDate || !dogsBirthDate) return new Date();
@@ -22,23 +29,31 @@ const App = () => {
   return (
     <div className="container">
 
-      <Header isCalculated={isCalculated} targetDate={targetDate}/>
+      <Header
+        isCalculated={isCalculated}
+        targetDate={targetDate}
+        isMobile={isMobile}
+      />
 
       <div className="controls">
         <MyDatePicker
           className="controls__item"
           myBirthDate={myBirthDate}
           setMyBirthDate={setMyBirthDate}
+          targetDate={targetDate}
           isCalculated={isCalculated}
+          isMobile={isMobile}
         />
         <div className="controls__item phoebe">
           Phoebe!
         </div>
-        <DogsDatePicker 
+        <DogsDatePicker
           className="controls__item"
           dogsBirthDate={dogsBirthDate}
           setDogsBirthDate={setMyBirthDate}
+          targetDate={targetDate}
           isCalculated={isCalculated}
+          isMobile={isMobile}
         />
       </div>
 
@@ -46,6 +61,7 @@ const App = () => {
         isCalculated={isCalculated}
         setIsCalculated={setIsCalculated}
         targetDate={targetDate}
+        isMobile={isMobile}
       />
     </div>
   );

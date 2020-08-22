@@ -12,3 +12,5 @@ export const MONTHS = [
   'November',
   'December'
 ]
+
+export const SMALL_SCREEN = '600px';

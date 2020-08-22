@@ -1,8 +1,9 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import ViewToggle from './ViewToggle';
+import TargetDateLabel from './TargetDateLabel';
 
-const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, isCalculated }) => {
+const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, isCalculated, isMobile }) => {
 
   return (
     <div className={`date-field my-date ${className}`}>
@@ -13,6 +14,12 @@ const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, isCalculated }) 
           onChange={date => setMyBirthDate(date)}
         />
       </ViewToggle>
+
+      {isMobile && (
+        <ViewToggle className="my-date__target" visible={isCalculated}>
+          <TargetDateLabel targetDate={targetDate} />
+        </ViewToggle>
+      )}
     </div>
   );
 }

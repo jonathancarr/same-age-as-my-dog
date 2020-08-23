@@ -3,6 +3,7 @@ import './App.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import Header from './components/Header';
 import MyDatePicker from './components/MyDatePicker';
+import Phoebe from './components/Phoebe';
 import Footer from './components/Footer';
 import DogsDatePicker from './components/DogsDatePicker';
 import { useMedia } from './hooks';
@@ -44,9 +45,9 @@ const App = () => {
           isCalculated={isCalculated}
           isMobile={isMobile}
         />
-        <div className="controls__item phoebe">
-          Phoebe!
-        </div>
+
+        <Phoebe className="controls__item" />
+
         <DogsDatePicker
           className="controls__item"
           dogsBirthDate={dogsBirthDate}

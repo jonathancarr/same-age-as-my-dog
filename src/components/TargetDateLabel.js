@@ -1,19 +1,21 @@
 import React, { useMemo } from 'react';
 import { MONTHS } from '../constants';
 
-const TargetDateLabel = ({ targetDate }) => {
-  const inFuture = useMemo(() => targetDate.getTime() > new Date().getTime(), [targetDate])
-
+const TargetDateLabel = ({ targetDate, conclusion }) => {
   return (
     <div className="target-date">
       <p className="target-date__label">
-        {inFuture ? (
+        {conclusion === "future" && (
           "You will be the same age on"
-        ):(
+        )}
+        {conclusion === "past" && (
           "You were the same age on"
         )}
+        {conclusion === "never" && (
+          "You were never the same age :("
+        )}
       </p>
-      <p className="target-date__date">
+      <p className={`target-date__date target-date__date--${conclusion === "never" ? "hidden" : "visible"}`}>
         {`${targetDate.getDate()} ${MONTHS[targetDate.getMonth()]} ${targetDate.getFullYear()}`}
       </p>
     </div>

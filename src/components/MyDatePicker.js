@@ -4,7 +4,7 @@ import ViewToggle from './ViewToggle';
 import TargetDateLabel from './TargetDateLabel';
 import MomentUtils from '@date-io/moment'
 
-const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, isCalculated, isMobile, setExpression }) => {
+const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, conclusion, isCalculated, isMobile, setExpression }) => {
 
   return (
     <div className={`date-field my-date ${className}`}>
@@ -25,7 +25,7 @@ const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, isCa
 
       {isMobile && (
         <ViewToggle className="my-date__target" visible={isCalculated}>
-          <TargetDateLabel targetDate={targetDate} />
+          <TargetDateLabel targetDate={targetDate} conclusion={conclusion}/>
         </ViewToggle>
       )}
     </div>

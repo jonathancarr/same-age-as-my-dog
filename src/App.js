@@ -38,6 +38,15 @@ const App = () => {
   }, [myBirthDate, dogsBirthDate]);
 
   const inFuture = useMemo(() => targetDate.getTime() > new Date().getTime(), [targetDate])
+  const conclusion = useMemo(() => {
+    if (!myBirthDate || !dogsBirthDate) return;
+    if (inFuture) {
+      return "future"
+    } else if(dogsBirthDate.isBefore(targetDate)) {
+      return "past"
+    }
+    return "never"
+  }, [targetDate, myBirthDate])
 
   const goToResults = useCallback(() => {
     if (!myBirthDate || !dogsBirthDate) {
@@ -59,6 +68,7 @@ const App = () => {
       <Header
         isCalculated={isCalculated}
         targetDate={targetDate}
+        conclusion={conclusion}
         isMobile={isMobile}
       />
 
@@ -69,6 +79,7 @@ const App = () => {
             myBirthDate={myBirthDate}
             setMyBirthDate={setMyBirthDate}
             targetDate={targetDate}
+            conclusion={conclusion}
             isCalculated={isCalculated}
             isMobile={isMobile}
             setExpression={setExpression}

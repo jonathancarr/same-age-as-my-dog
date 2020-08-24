@@ -88,8 +88,8 @@ body {
   }
 }
 
-.date-field {
-
+.dog-date {
+  text-align: right;
 }
 
 .my-date {
@@ -143,12 +143,8 @@ body {
   }
 }
 
-.react-datepicker__input-container input {
-  border: $pink 1px solid;
-  border-radius: 4px;
-  font-size: 18px;
-  padding: 12px 0;
-  text-align: center;
+.MuiFormControl-root.MuiTextField-root{
+  min-width: 66%;
 }
 
 .react-datepicker__day--selected,
@@ -182,6 +178,14 @@ body {
   &__date {
     font-size: 32px;
     margin: 0 0 16px;
+
+    &--hidden {
+      visibility: hidden;
+    }
+
+    &--visible {
+      visibility: visible;
+    }
   }
 }
 

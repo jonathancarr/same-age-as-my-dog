@@ -53,6 +53,7 @@ body {
 
 .title {
   border-bottom: 3px solid $pink;
+  margin-bottom: 32px;
   width: fit-content;
   @media (min-width: $screen-small) {
     font-size: 32px;
@@ -173,7 +174,7 @@ body {
 
   &__date {
     font-size: 32px;
-    margin: 0 0 16px;
+    margin: 0 0 48px;
 
     &--hidden {
       visibility: hidden;

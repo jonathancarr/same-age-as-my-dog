@@ -8,6 +8,15 @@ import Footer from './components/Footer';
 import DogsDatePicker from './components/DogsDatePicker';
 import { useMedia } from './hooks';
 import { SMALL_SCREEN } from './constants';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#E27396',
+    },
+  },
+});
 
 const App = () => {
   const [myBirthDate, setMyBirthDate] = useState(null);
@@ -24,8 +33,8 @@ const App = () => {
   const targetDate = useMemo(() => {
     if (!myBirthDate || !dogsBirthDate) return new Date();
 
-    const diffTime = dogsBirthDate - myBirthDate;
-    return new Date(dogsBirthDate.getTime() + diffTime / 6)
+    const diffTime = dogsBirthDate.diff(myBirthDate);
+    return new Date(dogsBirthDate.valueOf() + diffTime / 6)
   }, [myBirthDate, dogsBirthDate]);
 
   const inFuture = useMemo(() => targetDate.getTime() > new Date().getTime(), [targetDate])
@@ -54,31 +63,33 @@ const App = () => {
       />
 
       <div className="controls">
-        <MyDatePicker
-          className="controls__item"
-          myBirthDate={myBirthDate}
-          setMyBirthDate={setMyBirthDate}
-          targetDate={targetDate}
-          isCalculated={isCalculated}
-          isMobile={isMobile}
-          setExpression={setExpression}
-        />
+        <ThemeProvider theme={theme}>
+          <MyDatePicker
+            className="controls__item"
+            myBirthDate={myBirthDate}
+            setMyBirthDate={setMyBirthDate}
+            targetDate={targetDate}
+            isCalculated={isCalculated}
+            isMobile={isMobile}
+            setExpression={setExpression}
+          />
 
-        <Phoebe
-          className="controls__item"
-          expression={expression}
-          setExpression={setExpression}
-        />
+          <Phoebe
+            className="controls__item"
+            expression={expression}
+            setExpression={setExpression}
+          />
 
-        <DogsDatePicker
-          className="controls__item"
-          dogsBirthDate={dogsBirthDate}
-          setDogsBirthDate={setDogsBirthDate}
-          targetDate={targetDate}
-          isCalculated={isCalculated}
-          isMobile={isMobile}
-          setExpression={setExpression}
-        />
+          <DogsDatePicker
+            className="controls__item"
+            dogsBirthDate={dogsBirthDate}
+            setDogsBirthDate={setDogsBirthDate}
+            targetDate={targetDate}
+            isCalculated={isCalculated}
+            isMobile={isMobile}
+            setExpression={setExpression}
+          />
+        </ThemeProvider>
       </div>
 
       <Footer

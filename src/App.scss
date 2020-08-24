@@ -144,12 +144,8 @@ body {
 }
 
 .MuiFormControl-root.MuiTextField-root{
-  min-width: 66%;
-}
-
-.react-datepicker__day--selected,
-.react-datepicker__day--keyboard-selected {
-  background: $pink !important;
+  min-width: 180px;
+  text-align: center;
 }
 
 .view-toggle {

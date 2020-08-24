@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import './App.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import Header from './components/Header';
@@ -10,9 +10,10 @@ import { useMedia } from './hooks';
 import { SMALL_SCREEN } from './constants';
 
 const App = () => {
-  const [myBirthDate, setMyBirthDate] = useState(new Date());
-  const [dogsBirthDate, setDogsBirthDate] = useState(new Date());
+  const [myBirthDate, setMyBirthDate] = useState(null);
+  const [dogsBirthDate, setDogsBirthDate] = useState(null);
   const [isCalculated, setIsCalculated] = useState(false);
+  const [expression, setExpression] = useState("normal");
 
   const isMobile = useMedia(
     [`(max-width: ${SMALL_SCREEN})`],
@@ -26,6 +27,22 @@ const App = () => {
     const diffTime = dogsBirthDate - myBirthDate;
     return new Date(dogsBirthDate.getTime() + diffTime / 6)
   }, [myBirthDate, dogsBirthDate]);
+
+  const inFuture = useMemo(() => targetDate.getTime() > new Date().getTime(), [targetDate])
+
+  const goToResults = useCallback(() => {
+    if (!myBirthDate || !dogsBirthDate) {
+      setExpression("disgruntled");
+    } else {
+      setExpression(inFuture ? "party" : "old");
+      setIsCalculated(true);
+    }
+  }, [dogsBirthDate, myBirthDate, setExpression, setIsCalculated, inFuture]);
+
+  const goToForm = useCallback(() => {
+    setExpression("normal");
+    setIsCalculated(false);
+  })
 
   return (
     <div className="container">
@@ -44,23 +61,30 @@ const App = () => {
           targetDate={targetDate}
           isCalculated={isCalculated}
           isMobile={isMobile}
+          setExpression={setExpression}
         />
 
-        <Phoebe className="controls__item" />
+        <Phoebe
+          className="controls__item"
+          expression={expression}
+          setExpression={setExpression}
+        />
 
         <DogsDatePicker
           className="controls__item"
           dogsBirthDate={dogsBirthDate}
-          setDogsBirthDate={setMyBirthDate}
+          setDogsBirthDate={setDogsBirthDate}
           targetDate={targetDate}
           isCalculated={isCalculated}
           isMobile={isMobile}
+          setExpression={setExpression}
         />
       </div>
 
       <Footer
         isCalculated={isCalculated}
-        setIsCalculated={setIsCalculated}
+        goToResults={goToResults}
+        goToForm={goToForm}
         targetDate={targetDate}
         isMobile={isMobile}
       />

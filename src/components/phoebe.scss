@@ -1,0 +1,123 @@
+.phoebe {
+  // border: 1px solid #EEE;
+  height: 200px;
+  overflow: visible;
+
+  &__mouth {
+    transition: transform 300ms;
+  }
+
+  &__ear {
+    transform-origin: center;
+    transition: transform 300ms;
+  }
+
+  &__pupil {
+    transition: transform 150ms;
+  }
+
+  &__party-hat {
+    transition: all 200ms;
+    opacity: 0;
+  }
+
+  &__old-hat {
+    transition: all 200ms;
+    opacity: 0;
+  }
+
+  &__glasses {
+    transition: all 200ms;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  &--happy, &--party {
+    .phoebe__mouth {
+      transform: translateY(5%)
+    }
+
+    .phoebe__ear--right {
+      transform: rotate(-15deg);;
+    }
+
+    .phoebe__ear--left {
+      transform: rotate(15deg);;
+    }
+  }
+
+  &--party {
+    .phoebe__party-hat {
+      animation: hat-fall 500ms forwards;
+      opacity: 1;
+    }
+  }
+
+  &--old {
+    .phoebe__old-hat {
+      animation: hat-fall 500ms forwards;
+      opacity: 1;
+    }
+
+    .phoebe__glasses {
+      animation: glasses-fall 500ms forwards;
+      opacity: 1;
+    }
+  }
+
+  &--disgruntled {
+    .phoebe__pupil--right {
+      transform: translateX(-1%);
+    }
+
+    .phoebe__pupil--left {
+      transform: translateX(1%);
+    }
+
+    .phoebe__ear--left {
+      transform: rotate(15deg);;
+    }
+
+    .phoebe__ear--right {
+      transform: rotate(-15deg);;
+    }
+  }
+
+  &--looking-up {
+    .phoebe__pupil--right { transform: translate(1%, -4%); }
+    .phoebe__pupil--left { transform: translate(-1%, -4%); }
+  }
+
+  &--looking-down {
+    .phoebe__pupil--right { transform: translateY(2%); }
+    .phoebe__pupil--left { transform: translateY(2%); }
+  }
+
+  &--looking-left {
+    .phoebe__pupil--right { transform: translateX(-2%); }
+    .phoebe__pupil--left { transform: translateX(-3%); }
+  }
+
+  &--looking-right {
+    .phoebe__pupil--right { transform: translateX(3%); }
+    .phoebe__pupil--left { transform: translateX(2%); }
+  }
+}
+
+@keyframes hat-fall {
+  0% {
+    transform: translate(0, -50%)rotate(15deg);
+  }
+  100% {
+    transform: translate(1%, 1%)rotate(0);
+  }
+}
+
+@keyframes glasses-fall {
+  0% {
+    transform: translate(0, -50%)rotate(45deg);
+  }
+  100% {
+    transform: translate(0, 0)rotate(0);
+  }
+}

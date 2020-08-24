@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import ViewToggle from './ViewToggle';
 import TargetDateLabel from './TargetDateLabel';
 
-const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, isCalculated, isMobile }) => {
+const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, isCalculated, isMobile, setExpression }) => {
 
   return (
     <div className={`date-field my-date ${className}`}>
@@ -12,6 +12,7 @@ const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, isCa
         <DatePicker
           selected={myBirthDate}
           onChange={date => setMyBirthDate(date)}
+          onFocus={() => setExpression(isMobile ? "looking-up" : "looking-left")}
         />
       </ViewToggle>
 

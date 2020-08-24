@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import ViewToggle from './ViewToggle';
 import ConclusionLabel from './ConclusionLabel';
 
-const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculated, targetDate, isMobile }) => {
+const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculated, targetDate, isMobile, setExpression }) => {
 
   return (
     <div className={`date-field my-date ${className}`}>
@@ -12,6 +12,7 @@ const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculat
         <DatePicker
           selected={dogsBirthDate}
           onChange={date => setDogsBirthDate(date)}
+          onFocus={() => setExpression(isMobile ? "looking-down" : "looking-right")}
         />
       </ViewToggle>
 

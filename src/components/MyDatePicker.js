@@ -18,7 +18,7 @@ const MyDatePicker = ({ className, myBirthDate, setMyBirthDate, targetDate, conc
             views={["year", "month", "date"]}
             value={myBirthDate}
             onChange={setMyBirthDate}
-            onFocus={() => setExpression(isMobile ? "looking-up" : "looking-left")}
+            onMouseEnter={() => setExpression(isMobile ? "looking-up" : "looking-left")}
           />
         </MuiPickersUtilsProvider>
       </ViewToggle>

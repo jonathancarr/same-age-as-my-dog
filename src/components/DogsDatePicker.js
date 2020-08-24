@@ -18,7 +18,7 @@ const DogsDatePicker = ({ className, dogsBirthDate, setDogsBirthDate, isCalculat
             views={["year", "month", "date"]}
             value={dogsBirthDate}
             onChange={setDogsBirthDate}
-            onFocus={() => setExpression(isMobile ? "looking-down" : "looking-right")}
+            onMouseEnter={() => setExpression(isMobile ? "looking-down" : "looking-right")}
           />
         </MuiPickersUtilsProvider>
       </ViewToggle>
